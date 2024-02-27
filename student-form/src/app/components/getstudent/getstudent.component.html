@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Student Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Get Student Data</h1><br>
+    <form [formGroup]="getdataForm">
+      <div class="mb-3">
+        <label for="studentId">Enrollment No</label>
+        <input type="number" class="form-control" id="studentId" formControlName="enroll"  placeholder="Enter Your Enrollment no Here" require min="1">
+      </div>
+      <button type="submit" class="btn btn-primary mr-3" (click)="onGet()">Submit</button>
+      <button type="button" class="btn btn-outline-primary" (click)="onGetall()">GetAll</button>
+    </form> <br>
+    <table *ngIf="indo.length > 0"  class="table table-responsive-md table-striped table-hover table-border">
+      <thead>
+        <tr>
+          <th>Enroll No</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>CGPA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of indo">
+          <td>{{ student.enroll }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.address }}</td>
+          <td>{{ student.cgpa }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table *ngIf="store.length > 0" class="table table-striped table-hover table-border">
+      <thead>
+        <tr>
+          <th>Enroll No</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>CGPA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of store">
+          <td>{{ s.enroll }}</td>
+          <td>{{ s.name }}</td>
+          <td>{{ s.address }}</td>
+          <td>{{ s.cgpa }}</td>
+        </tr> 
+      </tbody>
+    </table> 
+  </div>
+</body>
+</html>

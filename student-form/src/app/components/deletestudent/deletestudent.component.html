@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Student</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .table-container {
+            max-height: 400px; /* Adjust the height as needed */
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Delete Student</h1>
+        <form [formGroup]="deleteForm">
+            <div class="mb-3">
+                <label for="deleteEnrollment">Enrollment No</label>
+                <input type="number" class="form-control" id="deleteEnrollment" formControlName="enroll" required
+                    placeholder="Enter Enrollment no">
+            </div>
+            <button type="button" class="btn btn-danger" (click)="onDelete()">Delete</button>
+        </form>
+
+        <br>
+        <h2>All Students</h2>
+        <div class="table-container">
+            <table class="table table-striped table-hover table-border">
+                <thead>
+                    <tr>
+                        <th (click)="sortBy('enroll')">Enroll No
+                            <span class="sort-arrow"
+                                [ngClass]="{'sort-arrow-up': sortKey === 'enroll' && !reverse, 'sort-arrow-down': sortKey === 'enroll' && reverse}"></span>
+                        </th>
+                        <th (click)="sortBy('name')">Name
+                            <span class="sort-arrow"
+                                [ngClass]="{'sort-arrow-up': sortKey === 'name' && !reverse, 'sort-arrow-down': sortKey === 'name' && reverse}"></span>
+                        </th>
+                        <th (click)="sortBy('address')">Address
+                            <span class="sort-arrow"
+                                [ngClass]="{'sort-arrow-up': sortKey === 'address' && !reverse, 'sort-arrow-down': sortKey === 'address' && reverse}"></span>
+                        </th>
+                        <th (click)="sortBy('cgpa')">CGPA
+                            <span class="sort-arrow"
+                                [ngClass]="{'sort-arrow-up': sortKey === 'cgpa' && !reverse, 'sort-arrow-down': sortKey === 'cgpa' && reverse}"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students | orderBy: sortKey: reverse">
+                        <td>{{ student.enroll }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.address }}</td>
+                        <td>{{ student.cgpa }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

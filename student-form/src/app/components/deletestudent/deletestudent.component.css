@@ -1,0 +1,22 @@
+/* delete-student.component.css */
+.sort-arrow {
+    width: 0;
+    height: 0;
+    display: inline-block;
+    vertical-align: middle;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+  
+  .sort-arrow-up {
+    border-bottom: 5px solid black; /* Change color as needed */
+  }
+  
+  .sort-arrow-down {
+    border-top: 5px solid black; /* Change color as needed */
+  }
+  /* Hide scrollbar for the table */
+*{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
