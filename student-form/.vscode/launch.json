@@ -3,6 +3,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "TestStudent4",
+      "request": "launch",
+      "mainClass": "TestStudent4",
+      "projectName": "student-form_4eeb3fb5"
+    },
+    {
       "name": "ng serve",
       "type": "chrome",
       "request": "launch",

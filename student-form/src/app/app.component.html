@@ -1,7 +1,7 @@
 <div class="container mt-5 active">
   <h1 class="mb-2">Select operation</h1>
 
-  <div class="btn-group">
+  <div class="btn-group d-flex">
     <div class="px-2">
       <button type="button" class="btn btn-primary" routerLink="/student">Create</button>
     </div>
@@ -13,6 +13,9 @@
     </div>
     <div class="px-2">
       <button type="button" class="btn btn-primary" routerLink="/delete">Delete</button>
+    </div>
+    <div class="px-2 ml-auto"> <!-- Apply ml-auto class -->
+      <button type="button" class="btn btn-danger" (click)="logoutWithDelay()">Logout</button>
     </div>
   </div>
   <router-outlet></router-outlet>

@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'student', component: CreatestudentComponent },
   { path : 'update', component : UpdatestudentComponent},
   { path : 'get', component : GetstudentComponent},
-  { path : 'delete', component : DeletestudentComponent}
+  { path : 'delete', component : DeletestudentComponent},
+
 ];
 
 @NgModule({
