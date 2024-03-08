@@ -64,13 +64,13 @@ public class UserController {
     public String welcome(Model model) {
         return "welcome";
     }
-//    @GetMapping("/logout")
-//    public String logout(HttpServletRequest request, HttpServletResponse response, Model model) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        if (auth != null) {
-//            new SecurityContextLogoutHandler().logout(request, response, auth);
-//        }
-//        model.addAttribute("message", "You have been logged out successfully.");
-//        return "login";
-//    }
+   @GetMapping("/logout")
+   public String logout(HttpServletRequest request, HttpServletResponse response, Model model) {
+       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+       if (auth != null) {
+           new SecurityContextLogoutHandler().logout(request, response, auth);
+       }
+       model.addAttribute("message", "You have been logged out successfully.");
+       return "login";
+   }
 }
