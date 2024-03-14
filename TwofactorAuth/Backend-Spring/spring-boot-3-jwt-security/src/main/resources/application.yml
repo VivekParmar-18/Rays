@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/2-factor
+    username: root
+    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties: 
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+application:
+  security:
+    jwt:
+      secret-key: Hk0P8JDe6TtZ4F3Y5qKgU6vX2wT4zW8hR9eP2bG1sY7jM6nV3rS0xQ1jK9oL5fC
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+
