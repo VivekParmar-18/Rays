@@ -25,8 +25,7 @@ public class AuthenticationController {
     public ResponseEntity<?> register(
             @RequestBody RegisterRequest request
     ) {
-    	log.trace("At register controller");
-    	System.out.println("Ok");
+    	log.info("At register controller");
         var response = service.register(request);
         if (request.isMfaEnabled()) {
             return ResponseEntity.ok(response);
@@ -38,7 +37,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request
     ) {
-    	log.trace("At login controller");
+    	log.info("At login controller");
         return ResponseEntity.ok(service.authenticate(request));
     }
 
@@ -47,16 +46,14 @@ public class AuthenticationController {
             HttpServletRequest request,
             HttpServletResponse response
     ) throws IOException {
-    	log.debug("refreshing tokens");
+    	log.warn("refreshing tokens");
         service.refreshToken(request, response);
     }
 
     @PostMapping("/verify")
     public ResponseEntity<?> verifyCode(
             @RequestBody VerificationRequest verificationRequest
-    ) {	log.info("will varify otp ");
+    ) {
         return ResponseEntity.ok(service.verifyCode(verificationRequest));
     }
-
-
 }

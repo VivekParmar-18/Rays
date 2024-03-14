@@ -66,6 +66,7 @@ public class AuthenticationService {
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
         if (user.isMfaEnabled()) {
+        	log.info("Will Verify OTP");
             return AuthenticationResponse.builder()
                     .accessToken("")
                     .refreshToken("")
@@ -107,7 +108,6 @@ public class AuthenticationService {
             }
         }
     }
-
     public AuthenticationResponse verifyCode(
             VerificationRequest verificationRequest
     ) {
@@ -117,10 +117,11 @@ public class AuthenticationService {
                         String.format("No user found with %S", verificationRequest.getEmail()))
                 );
         if (tfaService.isOtpNotValid(user.getSecret(), verificationRequest.getCode())) {
-
+         	log.error("Invalid OTP");
             throw new BadCredentialsException("Code is not correct");
         }
         var jwtToken = jwtService.generateToken(user);
+        log.info("OTP Verified");
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .mfaEnabled(user.isMfaEnabled())

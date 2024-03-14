@@ -14,6 +14,8 @@ export class LoginComponent {
   authRequest: AuthenticationRequest = {};
   otpCode = '';
   authResponse: AuthenticationResponse = {};
+  errorMessage!: string; 
+  errorMessage2!: string; 
 
   constructor( private authService: AuthService,    private router: Router) { }
 
@@ -26,9 +28,17 @@ export class LoginComponent {
             localStorage.setItem('token', response.accessToken as string);
             this.router.navigate(['welcome']);
           }
+        },
+        error: (error) => {
+          console.error('An error occurred during authentication:', error);
+          // Assuming there's an error message in the error object
+          this.errorMessage = "Invalid Credentials";
+          // Resetting the authResponse since authentication failed
+          this.authResponse = {};
         }
       });
   }
+  
 
   verifyCode() {
     const verifyRequest: VerificationRequest = {
@@ -40,6 +50,13 @@ export class LoginComponent {
         next: (response) => {
           localStorage.setItem('token', response.accessToken as string);
           this.router.navigate(['welcome']);
+        },
+        error: (error) => {
+          console.error('An error occurred during verification:', error);
+          // Assuming there's an error message in the error object
+          this.errorMessage2 ="Invalid OTP";
+          // Clear OTP code if verification fails
+          this.otpCode = '';
         }
       });
   }

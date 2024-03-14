@@ -16,6 +16,7 @@ export class RegisterComponent {
 
   message = '';
   otpCode = '';
+  errorMessage2!:String;
   
   constructor(
     private authService: AuthService,
@@ -43,6 +44,7 @@ export class RegisterComponent {
   }
   verifyTfa() {
     this.message = '';
+    
     const verifyRequest: VerificationRequest = {
       email: this.registerRequest.email,
       code: this.otpCode
@@ -55,7 +57,12 @@ export class RegisterComponent {
             localStorage.setItem('token', response.accessToken as string);
             this.router.navigate(['welcome']);
           }, 3000);
-        }
-      });
+        },
+        error: (error) => {
+          console.error('An error occurred during authentication:', error);
+          // Assuming there's an error message in the error object
+          this.errorMessage2 = "Invalid Authentication code. Please try again.";
+        }}
+        );
   }
 }
